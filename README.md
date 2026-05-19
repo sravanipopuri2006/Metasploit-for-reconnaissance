@@ -19,33 +19,39 @@ Investigate on the various categories of tools as follows:
 ### Step 3:
 
 Open terminal and try execute some kali linux commands
+### step4:
+use the db-nmap command to scan and save the results into Metasploit's postgresql attached database. In that way, you can use those results in the exploitation stage later.
+
+scan the targets with the command db_nmap as follows.
+msf > db_nmap 192.168.181.0/24
 
 ## EXECUTION STEPS AND ITS OUTPUT:
 
 Find out the ip address of the attackers system
 ## OUTPUT:
+Checking the Port using ifconfig:
+<img width="570" height="403" alt="image" src="https://github.com/user-attachments/assets/db91b99e-f73a-4e50-a02f-476a5834f4d4" />
 
-
-Invoke msfconsole:
 ## OUTPUT:
+Get into The MsfConsole :
+<img width="627" height="479" alt="image" src="https://github.com/user-attachments/assets/3b7d6a21-d5c0-4499-99f7-311ef035fd97" />
+<br/>
 
 
-Type help or a question mark "?" to see the list of all available commands you can use inside msfconsole.
 
 
-
-
-Port Scanning:
-Following command is executed for scanning the systems on our local area network with a TCP scan (-sT) looking for open ports between 1 and 1000 (-p1-1000).
-msf >  nmap -sT 192.168.1810/24 -p1-1000  (Replace with appropriate IP Address)
 ## OUTPUT:
+Using Help Command :
+<img width="743" height="592" alt="image" src="https://github.com/user-attachments/assets/3f917ef1-29c5-4307-8352-571556fa9c4c" />
+<br/>
 
-step4:
-use the db-nmap command to scan and save the results into Metasploit's postgresql attached database. In that way, you can use those results in the exploitation stage later.
 
-scan the targets with the command db_nmap as follows.
-msf > db_nmap 192.168.181.0/24
+
 ## OUTPUT:
+<img width="500" height="139" alt="image" src="https://github.com/user-attachments/assets/9bae07e7-74b1-4a51-b7a7-cb9991c51f94" />
+<br/>
+Port Scanning: Following command is executed for scanning the systems on our local area network with a TCP scan (-sT) looking for open ports between 1 and 1000 (-p1-1000).
+
 
 
 
@@ -59,57 +65,20 @@ kali > ls -l
 Search is a powerful command in Metasploit that you can use to find what you want to locate. 
 msf >search name:Microsoft type:exploit
 ## OUTPUT:
+# DB_Nmap :
+<img width="594" height="582" alt="image" src="https://github.com/user-attachments/assets/aef9e221-a895-4a18-8c1b-f0afc7482402" />
+<br/>
+use the db-nmap command to scan and save the results into Metasploit's postgresql attached database. In that way, you can use those results in the exploitation stage later.
 
 
-
-The info command provides information regarding a module or platform,
-
-Before beginning, set up the Metasploit database by starting the PostgreSQL server and initialize msfconsole database as follows:
-systemctl start postgresql
-msfdb init
-## OUTPUT:
-
-
-
-
-## MYSQL ENUMERATION
-Find the IP address of the Metasploitable machine first. Then, use the db_nmap command in msfconsole with Nmap flags to scan the MySQL database at 3306 port.
-db_nmap -sV -sC -p 3306 <metasploitable_ip_address>
-
-## OUTPUT:
-
-Use the search option to look for an auxiliary module to scan and enumerate the MySQL database.
-search type:auxiliary mysql
-## OUTPUT:
-
-
-use the auxiliary/scanner/mysql/mysql_version module by typing the module name or associated number to scan MySQL version details.
-use 11
-Or:
-use auxiliary/scanner/mysql/mysql_version
-## OUTPUT:
+### Viewing the metasploit framework on root:
+<img width="676" height="371" alt="image" src="https://github.com/user-attachments/assets/9ed56f9d-172d-4d3e-814a-0572ea193dc4" />
+<br/>
+Metasploit has a multitude of scanning modules built in. If we open another terminal, we can navigate to Metasploit's auxiliary modules and list all the scanner modules. cd /usr/share /metasploit-framework/modules/auxiliary kali > ls -l
 
 
 
 
-Use the set rhosts command to set the parameter and run the module, as follows:
-## OUTPUT:
-
-
-
-After scanning, you can also brute force MySQL root account via Metasploit's auxiliary(scanner/mysql/mysql_login) module.
-## OUTPUT:
-
-
-
-
-set the PASS_FILE parameter to the wordlist path available inside /usr/share/wordlists:
-set PASS_FILE /usr/share/wordlistss/rockyou.txt
-Then, specify the IP address of the target machine with the RHOSTS command.
-set RHOSTS <metasploitable-ip-address>
-Set BLANK_PASSWORDS to true in case there is no password set for the root account.
-set BLANK_PASSWORDS true
-## OUTPUT:
 
 
 
